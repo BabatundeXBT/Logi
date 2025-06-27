@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.login-header {
+  margin-bottom: 40px;
+}
+
+.login-title {
+  font-size: 48px;
+  font-weight: 600;
+  color: #4c5fd5;
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+.login-subtitle {
+  font-size: 18px;
+  color: #8b8b8b;
+  font-weight: 400;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-label {
+  display: block;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4c5fd5;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(76, 95, 213, 0.1);
+}
+
+.form-input::placeholder {
+  color: #aaa;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 18px;
+  background: #4c5fd5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 30px 0 20px 0;
+}
+
+.login-btn:hover {
+  background: #3d4fb8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(76, 95, 213, 0.3);
+}
+
+.login-btn:active {
+  transform: translateY(0);
+}
+
+.register-link {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  color: #4c5fd5;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-bottom: 40px;
+}
+
+.register-link:hover {
+  border-color: #4c5fd5;
+  background-color: #f8f9ff;
+}
+
+.divider {
+  margin: 30px 0;
+  position: relative;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e0e0e0;
+}
+
+.wechat-section {
+  margin-top: 30px;
+}
+
+.wechat-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
+
+.wechat-btn:hover {
+  background-color: #f0f8f0;
+  transform: translateY(-2px);
+}
+
+.wechat-icon {
+  width: 60px;
+  height: 60px;
+  background: #1aad19;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.wechat-icon::before {
+  content: "💬";
+  font-size: 28px;
+  color: white;
+}
+
+.wechat-text {
+  font-size: 16px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 32px 24px;
+    margin: 10px;
+  }
+
+  .login-title {
+    font-size: 40px;
+  }
+
+  .login-subtitle {
+    font-size: 16px;
+  }
+
+  .form-input {
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+
+  .login-btn {
+    padding: 16px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .login-container {
+    padding: 24px 20px;
+  }
+
+  .login-title {
+    font-size: 36px;
+  }
+}
+
+/* Focus states for accessibility */
+.login-btn:focus {
+  outline: 2px solid #4c5fd5;
+  outline-offset: 2px;
+}
+
+.register-link:focus {
+  outline: 2px solid #4c5fd5;
+  outline-offset: 2px;
+}
+
+.wechat-btn:focus {
+  outline: 2px solid #1aad19;
+  outline-offset: 2px;
+}

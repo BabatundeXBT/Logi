@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/styles/generalCss.css" />
+    <link rel="stylesheet" href="../assets/styles/costing.css" />
+    <title>Cost</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="back-arrow">‹</div>
+        <div class="header-title">Costing</div>
+        <div class="profile-icon"></div>
+      </header>
+
+      <main class="main-content">
+        <h1 class="page-title">Costing</h1>
+        <p class="subtitle">Estimate the waybill price for you!</p>
+
+        <div class="destination-section">
+          <div class="section-title">*destination</div>
+          <div class="destination-grid">
+            <button class="destination-btn" onclick="selectDestination(this)">
+              Canada 加拿大
+            </button>
+            <button class="destination-btn" onclick="selectDestination(this)">
+              East Malaysia 东马来西亚
+            </button>
+            <button class="destination-btn" onclick="selectDestination(this)">
+              West Malaysia 西马来西亚
+            </button>
+            <button class="destination-btn" onclick="selectDestination(this)">
+              Singapore 新加坡
+            </button>
+          </div>
+        </div>
+
+        <div class="cargo-title">cargo data</div>
+
+        <form class="cargo-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">length</label>
+              <input type="text" class="form-input" placeholder="cm" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">width</label>
+              <input type="text" class="form-input" placeholder="cm" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">height</label>
+              <input type="text" class="form-input" placeholder="cm" />
+            </div>
+            <div class="form-group">
+              <label class="form-label required">*weight</label>
+              <input type="text" class="form-input" placeholder="kg" />
+            </div>
+            <div class="form-group">
+              <label class="form-label required">*piece</label>
+              <input type="text" class="form-input" placeholder="piece" />
+            </div>
+          </div>
+        </form>
+
+        <button class="add-parcel">+add parcel</button>
+
+        <button class="start-btn">start</button>
+
+        <div class="footer">
+          <div class="language-toggle">
+            <span>Language:</span>
+            <a href="#" onclick="changeLanguage('zh')">中文</a>
+            <a href="#" onclick="changeLanguage('en')">English</a>
+          </div>
+          <div class="copyright">
+            Copyright@2020 NBC Skye Logistics Services Ltd .
+          </div>
+          <div class="icp-number">粤ICP备2022082757号</div>
+        </div>
+      </main>
+    </div>
+
+    <nav class="bottom-navbar">
+      <a href="../index.html" class="nav-item active" onclick="setActive(this)">
+        <div class="nav-icon">
+          <div class="home-icon"></div>
+        </div>
+        <span class="nav-text">Home Page</span>
+      </a>
+
+      <a href="./tracking.html" class="nav-item" onclick="setActive(this)">
+        <div class="nav-icon">
+          <div class="tracking-icon"></div>
+        </div>
+        <span class="nav-text">Tracking</span>
+      </a>
+
+      <a href="./addPackage.html" class="nav-item" onclick="setActive(this)">
+        <button class="add-package-btn">Add<br />Package</button>
+      </a>
+
+      <a href="#" class="nav-item" onclick="setActive(this)">
+        <div class="nav-icon">
+          <div class="costing-icon"></div>
+        </div>
+        <span class="nav-text">Costing</span>
+      </a>
+
+      <a href="./userCenter.html" class="nav-item" onclick="setActive(this)">
+        <div class="nav-icon">
+          <div class="user-icon"></div>
+        </div>
+        <span class="nav-text">User Center</span>
+      </a>
+    </nav>
+
+    <script src="../assets/scripts/generalScript.js"></script>
+    <script>
+      function selectDestination(button) {
+        // Remove selected class from all buttons
+        const buttons = document.querySelectorAll(".destination-btn");
+        buttons.forEach((btn) => btn.classList.remove("selected"));
+
+        // Add selected class to clicked button
+        button.classList.add("selected");
+      }
+
+      // Add parcel functionality
+      document
+        .querySelector(".add-parcel")
+        .addEventListener("click", function () {
+          const cargoForm = document.querySelector(".cargo-form");
+          const newRow = document.createElement("div");
+          newRow.className = "form-row";
+          newRow.innerHTML = `
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="cm">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="cm">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="cm">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="kg">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="piece">
+                </div>
+            `;
+          cargoForm.appendChild(newRow);
+        });
+
+      // Language switching
+      document.querySelectorAll(".language-link").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          document
+            .querySelectorAll(".language-link")
+            .forEach((l) => l.classList.remove("active"));
+          this.classList.add("active");
+        });
+      });
+
+      // Start button functionality
+      document
+        .querySelector(".start-btn")
+        .addEventListener("click", function () {
+          const selectedDestination = document.querySelector(
+            ".destination-btn.selected"
+          );
+          const weightInputs = document.querySelectorAll(
+            'input[placeholder="kg"]'
+          );
+          const pieceInputs = document.querySelectorAll(
+            'input[placeholder="piece"]'
+          );
+
+          if (!selectedDestination) {
+            alert("Please select a destination");
+            return;
+          }
+
+          let hasValidData = false;
+          for (let i = 0; i < weightInputs.length; i++) {
+            if (weightInputs[i].value.trim() && pieceInputs[i].value.trim()) {
+              hasValidData = true;
+              break;
+            }
+          }
+
+          if (!hasValidData) {
+            alert(
+              "Please fill in at least one row with weight and piece information"
+            );
+            return;
+          }
+
+          alert("Calculating shipping cost...");
+        });
+    </script>
+  </body>
+</html>

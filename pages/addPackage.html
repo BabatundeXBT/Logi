@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/styles/generalCss.css" />
+    <link rel="stylesheet" href="../assets/styles/addPackage.css" />
+    <title>Login - Enjoy More Services</title>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-header">
+        <h1 class="login-title">Login</h1>
+        <p class="login-subtitle">Enjoy More Services</p>
+      </div>
+
+      <form class="login-form">
+        <div class="form-group">
+          <label class="form-label" for="account">Account</label>
+          <input
+            type="tel"
+            id="account"
+            class="form-input"
+            placeholder="Standard format 08011112222(Phone number)"
+            maxlength="11"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-input"
+            placeholder="Please enter your login password"
+          />
+        </div>
+
+        <button type="submit" class="login-btn">Login Now</button>
+      </form>
+
+      <a href="#" class="register-link">No account, register now</a>
+
+      <div class="wechat-section">
+        <button type="button" class="wechat-btn">
+          <div class="wechat-icon"></div>
+          <span class="wechat-text">Wechat login</span>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Basic form validation and interaction
+      document
+        .querySelector(".login-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const account = document.getElementById("account").value;
+          const password = document.getElementById("password").value;
+
+          if (!account || !password) {
+            alert("Please fill in all fields");
+            return;
+          }
+
+          if (account.length < 11) {
+            alert("Please enter a valid phone number");
+            return;
+          }
+
+          // Simulate login process
+          const loginBtn = document.querySelector(".login-btn");
+          loginBtn.textContent = "Logging in...";
+          loginBtn.disabled = true;
+
+          setTimeout(() => {
+            alert("Login successful!");
+            loginBtn.textContent = "Login Now";
+            loginBtn.disabled = false;
+          }, 1500);
+        });
+
+      // Phone number formatting
+      document
+        .getElementById("account")
+        .addEventListener("input", function (e) {
+          let value = e.target.value.replace(/\D/g, "");
+          if (value.length > 11) {
+            value = value.slice(0, 11);
+          }
+          e.target.value = value;
+        });
+
+      // WeChat login simulation
+      document
+        .querySelector(".wechat-btn")
+        .addEventListener("click", function () {
+          alert("WeChat login feature would be implemented here");
+        });
+
+      // Register link
+      document
+        .querySelector(".register-link")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          alert("Registration page would open here");
+        });
+    </script>
+  </body>
+</html>

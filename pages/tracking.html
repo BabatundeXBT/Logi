@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/styles/generalCss.css" />
+    <link rel="stylesheet" href="../assets/styles/tracking.css" />
+    <title>Tracking</title>
+  </head>
+  <body>
+    <div class="main-content">
+      <div class="container">
+        <div class="header">
+          <h1>Tracking</h1>
+          <div class="description">
+            Input your each China waybill number to get the latest Status of
+            each parcel
+          </div>
+          <div class="description">
+            Input your NBC tracking number to get the latest status for the
+            whole shipment of multiple parcels
+          </div>
+        </div>
+
+        <form class="tracking-form" id="trackingForm">
+          <div class="form-group">
+            <div class="form-row">
+              <div class="form-label">Tracking Type</div>
+              <div class="form-input">
+                <select id="trackingType" name="trackingType">
+                  <option value="nbc">NBC Tracking Number</option>
+                  <option value="china">China Waybill Number</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="form-label">Number</div>
+              <div class="form-input">
+                <input
+                  type="text"
+                  id="trackingNumber"
+                  name="trackingNumber"
+                  placeholder="Input NBC Tracking Number"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+      </div>
+
+      <div class="footer">
+        <div class="language-toggle">
+          <span>Language:</span>
+          <a href="#" onclick="changeLanguage('zh')">中文</a>
+          <a href="#" onclick="changeLanguage('en')">English</a>
+        </div>
+        <div class="copyright">
+          Copyright@2020 NBC Skye Logistics Services Ltd .
+        </div>
+        <div class="icp-number">粤ICP备2022082757号</div>
+      </div>
+    </div>
+
+    <!-- navigation bar  -->
+    <nav class="bottom-navbar">
+      <a href="../index.html" class="nav-item active" onclick="setActive(this)">
+        <div class="nav-icon">
+          <div class="home-icon"></div>
+        </div>
+        <span class="nav-text">Home Page</span>
+      </a>
+
+      <a href="#" class="nav-item" onclick="setActive(this)">
+        <div class="nav-icon">
+          <div class="tracking-icon"></div>
+        </div>
+        <span class="nav-text">Tracking</span>
+      </a>
+
+      <a href="./addPackage.html" class="nav-item" onclick="setActive(this)">
+        <button class="add-package-btn">Add<br />Package</button>
+      </a>
+
+      <a href="./costing.html" class="nav-item" onclick="setActive(this)">
+        <div class="nav-icon">
+          <div class="costing-icon"></div>
+        </div>
+        <span class="nav-text">Costing</span>
+      </a>
+
+      <a href="./userCenter.html" class="nav-item" onclick="setActive(this)">
+        <div class="nav-icon">
+          <div class="user-icon"></div>
+        </div>
+        <span class="nav-text">User Center</span>
+      </a>
+    </nav>
+
+    <script src="../assets/scripts/generalScript.js"></script>
+    <script>
+      // Update placeholder text based on tracking type selection
+      document
+        .getElementById("trackingType")
+        .addEventListener("change", function () {
+          const trackingNumber = document.getElementById("trackingNumber");
+          if (this.value === "china") {
+            trackingNumber.placeholder = "Input China Waybill Number";
+          } else {
+            trackingNumber.placeholder = "Input NBC Tracking Number";
+          }
+        });
+
+      // Handle form submission
+      document
+        .getElementById("trackingForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const trackingType = document.getElementById("trackingType").value;
+          const trackingNumber = document
+            .getElementById("trackingNumber")
+            .value.trim();
+          const submitBtn = document.querySelector(".submit-btn");
+
+          if (!trackingNumber) {
+            alert("Please enter a tracking number");
+            return;
+          }
+
+          // Disable button and show loading state
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Tracking...";
+
+          // Simulate tracking request (replace with actual API call)
+          setTimeout(() => {
+            alert(
+              `Tracking ${trackingType.toUpperCase()} number: ${trackingNumber}\n\nThis would normally connect to the tracking system.`
+            );
+
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Submit";
+          }, 2000);
+        });
+
+      // Language toggle functionality
+      function changeLanguage(lang) {
+        if (lang === "zh") {
+          // Switch to Chinese (you would implement actual translation here)
+          alert("切换到中文版本");
+        } else {
+          // Switch to English
+          alert("Switched to English version");
+        }
+      }
+
+      // Add some interactive feedback
+      document.querySelectorAll("input, select").forEach((element) => {
+        element.addEventListener("focus", function () {
+          this.closest(".form-row").style.transform = "scale(1.02)";
+        });
+
+        element.addEventListener("blur", function () {
+          this.closest(".form-row").style.transform = "scale(1)";
+        });
+      });
+    </script>
+  </body>
+</html>
