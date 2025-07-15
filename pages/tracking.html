@@ -17,7 +17,7 @@
             each parcel
           </div>
           <div class="description">
-            Input your NBC tracking number to get the latest status for the
+            Input your ECL tracking number to get the latest status for the
             whole shipment of multiple parcels
           </div>
         </div>
@@ -28,7 +28,7 @@
               <div class="form-label">Tracking Type</div>
               <div class="form-input">
                 <select id="trackingType" name="trackingType">
-                  <option value="nbc">NBC Tracking Number</option>
+                  <option value="ECL">ECL Tracking Number</option>
                   <option value="china">China Waybill Number</option>
                 </select>
               </div>
@@ -43,7 +43,7 @@
                   type="text"
                   id="trackingNumber"
                   name="trackingNumber"
-                  placeholder="Input NBC Tracking Number"
+                  placeholder="Input ECL Tracking Number"
                   required
                 />
               </div>
@@ -61,7 +61,7 @@
           <a href="#" onclick="changeLanguage('en')">English</a>
         </div>
         <div class="copyright">
-          Copyright@2020 NBC Skye Logistics Services Ltd .
+          Copyright@2025 Easyway Chumaco Logistics Services Ltd .
         </div>
         <div class="icp-number">粤ICP备2022082757号</div>
       </div>
@@ -112,7 +112,7 @@
           if (this.value === "china") {
             trackingNumber.placeholder = "Input China Waybill Number";
           } else {
-            trackingNumber.placeholder = "Input NBC Tracking Number";
+            trackingNumber.placeholder = "Input ECL Tracking Number";
           }
         });
 
@@ -137,7 +137,7 @@
           submitBtn.disabled = true;
           submitBtn.textContent = "Tracking...";
 
-          // Simulate tracking request (replace with actual API call)
+          // Simulate tracking request
           setTimeout(() => {
             alert(
               `Tracking ${trackingType.toUpperCase()} number: ${trackingNumber}\n\nThis would normally connect to the tracking system.`
